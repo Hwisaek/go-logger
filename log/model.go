@@ -15,7 +15,7 @@ type data struct {
 }
 
 func newData(level, message string) data {
-	_, file, line, _ := runtime.Caller(1)
+	_, file, line, _ := runtime.Caller(2)
 	d := data{
 		Time:    time.Now(),
 		Level:   level,
