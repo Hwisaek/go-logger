@@ -1,8 +1,8 @@
 package log
 
 const (
-	LevelDebug = iota
-	LevelInfo
-	LevelWarning
-	LevelError
+	LevelDebug   = "debug"
+	LevelInfo    = "info"
+	LevelWarning = "warning"
+	LevelError   = "error"
 )

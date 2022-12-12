@@ -8,13 +8,13 @@ import (
 
 type data struct {
 	Time    time.Time `json:"time"`
-	Level   int       `json:"level"`
+	Level   string    `json:"level"`
 	File    string    `json:"file"`
 	Line    int       `json:"line"`
 	Message string    `json:"message"`
 }
 
-func newData(level int, message string) data {
+func newData(level, message string) data {
 	_, file, line, _ := runtime.Caller(1)
 	d := data{
 		Time:    time.Now(),
