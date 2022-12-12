@@ -2,8 +2,20 @@ package log
 
 import (
 	"fmt"
-	"log"
+	"io"
+	"os"
 )
+
+var writer io.Writer
+
+func init() {
+	writer = io.MultiWriter(os.Stdout)
+}
+
+func SetWriter(writers ...io.Writer) io.Writer {
+	writer = io.MultiWriter(writers...)
+	return writer
+}
 
 func Debug(messages ...interface{}) {
 	message := ""
@@ -11,7 +23,7 @@ func Debug(messages ...interface{}) {
 		message += fmt.Sprintf("%v", m)
 	}
 	data := newData(LevelDebug, message)
-	log.Println(fmt.Sprintf("%s", data))
+	fmt.Fprintln(writer, fmt.Sprintf("%s", data))
 }
 
 func Info(messages ...interface{}) {
@@ -21,7 +33,7 @@ func Info(messages ...interface{}) {
 	}
 
 	data := newData(LevelInfo, message)
-	log.Println(fmt.Sprintf("%s", data))
+	fmt.Fprintln(writer, fmt.Sprintf("%s", data))
 }
 
 func Warning(messages ...interface{}) {
@@ -31,7 +43,7 @@ func Warning(messages ...interface{}) {
 	}
 
 	data := newData(LevelWarning, message)
-	log.Println(fmt.Sprintf("%s", data))
+	fmt.Fprintln(writer, fmt.Sprintf("%s", data))
 }
 
 func Error(messages ...interface{}) {
@@ -41,5 +53,5 @@ func Error(messages ...interface{}) {
 	}
 
 	data := newData(LevelError, message)
-	log.Println(fmt.Sprintf("%s", data))
+	fmt.Fprintln(writer, fmt.Sprintf("%s", data))
 }
