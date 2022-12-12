@@ -1,4 +1,4 @@
-package go_logger
+package log
 
 import (
 	"encoding/json"

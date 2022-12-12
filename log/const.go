@@ -1,4 +1,4 @@
-package go_logger
+package log
 
 const (
 	LevelDebug = iota
