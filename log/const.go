@@ -6,3 +6,7 @@ const (
 	LevelWarning = "warning"
 	LevelError   = "error"
 )
+const (
+	NormalFormat = iota
+	JSONFormat
+)

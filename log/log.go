@@ -6,15 +6,21 @@ import (
 	"os"
 )
 
-var writer io.Writer
+var (
+	writer io.Writer
+	format = JSONFormat
+)
 
 func init() {
 	writer = io.MultiWriter(os.Stdout)
 }
 
-func SetWriter(writers ...io.Writer) io.Writer {
+func SetType(logFormat int) {
+	format = logFormat
+}
+
+func SetWriter(writers ...io.Writer) {
 	writer = io.MultiWriter(writers...)
-	return writer
 }
 
 func Debug(messages ...interface{}) {
